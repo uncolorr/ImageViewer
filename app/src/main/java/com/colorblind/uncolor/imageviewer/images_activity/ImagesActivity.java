@@ -92,7 +92,7 @@ public class ImagesActivity extends AppCompatActivity {
                 if(response.body().getError() != null){
                     Toast.makeText(
                             ImagesActivity.this,
-                            "Ошибка загрузки ленты",
+                            ImagesActivity.this.getString(R.string.msg_images_not_loaded),
                             Toast.LENGTH_LONG)
                             .show();
                 }
@@ -112,11 +112,10 @@ public class ImagesActivity extends AppCompatActivity {
             public void onFailure(@NonNull Call<ResponseModel> call,
                                   @NonNull Throwable t) {
                 swipeRefreshLayout.setRefreshing(false);
-                App.Log("Failure");
                 App.Log(t.toString());
                 App.Log(t.getMessage());
                 Toast.makeText(ImagesActivity.this,
-                        "Неизвестная ошибка",
+                        ImagesActivity.this.getString(R.string.msg_unspecified_error),
                         Toast.LENGTH_LONG)
                         .show();
             }

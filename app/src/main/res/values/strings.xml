@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ImageViewer</string>
-
     <string name="vk_api_version">5.74</string>
+    <string name="msg_images_not_loaded">Ошибка загрузки ленты</string>
+    <string name="msg_unspecified_error">Неизвестная ошибка</string>
 
 </resources>
