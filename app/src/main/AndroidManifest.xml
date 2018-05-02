@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.colorblind.uncolor.imageviewer">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".application.App"
@@ -14,7 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-
             android:name=".images_activity.ImagesActivity_"
             android:label="Images"
             android:theme="@style/WhiteAppTheme">
@@ -24,6 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".image_slider_activity.SwipeImagesActivity_"/>
     </application>
 
 </manifest>
