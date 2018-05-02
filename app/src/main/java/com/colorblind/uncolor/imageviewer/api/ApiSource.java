@@ -14,5 +14,9 @@ import retrofit2.http.POST;
 public interface ApiSource {
     @FormUrlEncoded
     @POST("photos.search")
-    Call<ResponseModel> searchPhotos(@Field("access_token") String token, @Field("v") String version);
+    Call<ResponseModel> searchPhotos(
+            @Field("access_token") String token,
+            @Field("count") int count,
+            @Field("offset") int offset,
+            @Field("v") String version);
 }

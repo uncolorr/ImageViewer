@@ -9,6 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "ACCESS_TOKEN", '"4ecd60344ecd60344ecd6034014eafca8b44ecd4ecd60341425361dca2e93e680dd7941"'
     }
     buildTypes {
         release {
