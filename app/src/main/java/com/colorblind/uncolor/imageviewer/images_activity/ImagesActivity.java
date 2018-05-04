@@ -5,6 +5,8 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.colorblind.uncolor.imageviewer.BuildConfig;
@@ -29,6 +31,9 @@ public class ImagesActivity extends AppCompatActivity {
 
     @ViewById
     RecyclerView recyclerViewImages;
+
+    @ViewById
+    ProgressBar progressBar;
 
     @ViewById
     SwipeRefreshLayout swipeRefreshLayout;
@@ -89,6 +94,7 @@ public class ImagesActivity extends AppCompatActivity {
                                    @NonNull Response<ResponseModel> response) {
 
                 swipeRefreshLayout.setRefreshing(false);
+                progressBar.setVisibility(View.INVISIBLE);
                 if(response.body().getError() != null){
                     Toast.makeText(
                             ImagesActivity.this,
@@ -111,6 +117,7 @@ public class ImagesActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NonNull Call<ResponseModel> call,
                                   @NonNull Throwable t) {
+                progressBar.setVisibility(View.INVISIBLE);
                 swipeRefreshLayout.setRefreshing(false);
                 App.Log(t.toString());
                 App.Log(t.getMessage());

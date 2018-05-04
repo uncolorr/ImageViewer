@@ -27,7 +27,6 @@ public class ImageViewHolder extends RecyclerView.ViewHolder {
                 .with(itemView.getContext())
                 .load(imageItem.getPhoto604())
                 .into(imageView);
-
     }
 
     public void setOnClickListener(View.OnClickListener onClickListener){
