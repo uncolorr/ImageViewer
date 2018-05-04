@@ -9,7 +9,6 @@
     <com.colorblind.uncolor.imageviewer.custom_views.TouchImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/nature"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

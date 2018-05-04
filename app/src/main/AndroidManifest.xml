@@ -15,6 +15,7 @@
         <activity
             android:name=".images_activity.ImagesActivity_"
             android:label="Images"
+            android:screenOrientation="portrait"
             android:theme="@style/WhiteAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".image_slider_activity.SwipeImagesActivity_"/>
+            android:name=".image_slider_activity.SwipeImagesActivity_"
+            android:screenOrientation="portrait"
+            android:theme="@style/ImageViewAppTheme"/>
     </application>
 
 </manifest>
