@@ -1,5 +1,7 @@
 package com.colorblind.uncolor.imageviewer.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
@@ -8,7 +10,7 @@ import com.google.gson.annotations.SerializedName;
  * Created by uncolor on 01.05.2018.
  */
 
-public class ImageItem {
+public class ImageItem implements Parcelable{
 
     @Nullable
     @SerializedName("id")
@@ -50,6 +52,31 @@ public class ImageItem {
     @SerializedName("date")
     private long date;
 
+    protected ImageItem(Parcel in) {
+        id = in.readLong();
+        albumId = in.readLong();
+        ownerId = in.readLong();
+        photo75 = in.readString();
+        photo130 = in.readString();
+        photo604 = in.readString();
+        width = in.readInt();
+        height = in.readInt();
+        text = in.readString();
+        date = in.readLong();
+    }
+
+    public static final Creator<ImageItem> CREATOR = new Creator<ImageItem>() {
+        @Override
+        public ImageItem createFromParcel(Parcel in) {
+            return new ImageItem(in);
+        }
+
+        @Override
+        public ImageItem[] newArray(int size) {
+            return new ImageItem[size];
+        }
+    };
+
     public long getId() {
         return id;
     }
@@ -88,6 +115,25 @@ public class ImageItem {
 
     public long getDate() {
         return date;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(id);
+        parcel.writeLong(albumId);
+        parcel.writeLong(ownerId);
+        parcel.writeString(photo75);
+        parcel.writeString(photo130);
+        parcel.writeString(photo604);
+        parcel.writeInt(width);
+        parcel.writeInt(height);
+        parcel.writeString(text);
+        parcel.writeLong(date);
     }
 }
 
