@@ -13,7 +13,7 @@
         <item name="colorPrimary">@android:color/white</item>
         <item name="colorPrimaryDark">@android:color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="titleTextColor">@android:color/black</item>
     </style>
 
     <style name="ImageViewAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -35,6 +35,12 @@
     <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
         <item name="android:background">@color/black_overlay</item>
     </style>
+
+    <style name="BlackProgressBar" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorAccent">@android:color/black</item>
+    </style>
+
+
 
 
 </resources>
