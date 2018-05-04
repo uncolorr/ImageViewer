@@ -8,10 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 import com.colorblind.uncolor.imageviewer.BuildConfig;
-import com.colorblind.uncolor.imageviewer.images_activity.interfaces.OnLoadMoreListener;
-import com.colorblind.uncolor.imageviewer.application.App;
 import com.colorblind.uncolor.imageviewer.R;
 import com.colorblind.uncolor.imageviewer.api.Api;
+import com.colorblind.uncolor.imageviewer.application.App;
+import com.colorblind.uncolor.imageviewer.images_activity.interfaces.OnLoadMoreListener;
 import com.colorblind.uncolor.imageviewer.models.ImageItem;
 import com.colorblind.uncolor.imageviewer.models.ResponseModel;
 
@@ -42,7 +42,7 @@ public class ImagesActivity extends AppCompatActivity {
         searchPhotosRequestData = new SearchPhotosRequestData();
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         recyclerViewImages.setLayoutManager(gridLayoutManager);
-        adapter = new ImagesAdapter(gridLayoutManager);
+        adapter = new ImagesAdapter(gridLayoutManager, this);
         adapter.setOnLoadMoreListener(getOnLoadMoreListener());
         recyclerViewImages.setAdapter(adapter);
         recyclerViewImages.addOnScrollListener(adapter.getOnScrollMoreListener());

@@ -2,12 +2,10 @@ package com.colorblind.uncolor.imageviewer.images_activity;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.colorblind.uncolor.imageviewer.R;
 import com.colorblind.uncolor.imageviewer.custom_views.SquareImageView;
-import com.colorblind.uncolor.imageviewer.image_slider_activity.SwipeImagesActivity;
 import com.colorblind.uncolor.imageviewer.models.ImageItem;
 
 /**
@@ -25,7 +23,6 @@ public class ImageViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(ImageItem imageItem){
         //...
-        setOnClickListener(imageItem);
         Glide
                 .with(itemView.getContext())
                 .load(imageItem.getPhoto604())
@@ -33,12 +30,7 @@ public class ImageViewHolder extends RecyclerView.ViewHolder {
 
     }
 
-    private void setOnClickListener(ImageItem imageItem){
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                itemView.getContext().startActivity(SwipeImagesActivity.newInstance(itemView.getContext(), 5));
-            }
-        });
+    public void setOnClickListener(View.OnClickListener onClickListener){
+        itemView.setOnClickListener(onClickListener);
     }
 }

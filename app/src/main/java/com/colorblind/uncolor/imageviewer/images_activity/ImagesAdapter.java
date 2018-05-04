@@ -1,5 +1,6 @@
 package com.colorblind.uncolor.imageviewer.images_activity;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.colorblind.uncolor.imageviewer.image_slider_activity.SwipeImagesActivity;
 import com.colorblind.uncolor.imageviewer.images_activity.interfaces.OnLoadMoreListener;
 import com.colorblind.uncolor.imageviewer.R;
 import com.colorblind.uncolor.imageviewer.application.App;
@@ -14,7 +16,6 @@ import com.colorblind.uncolor.imageviewer.models.ImageItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by uncolor on 01.05.2018.
@@ -30,10 +31,21 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     private int visibleThreshold = 1;
     private int lastVisibleItem, totalItemCount;
     private GridLayoutManager gridLayoutManager;
-    private List<ImageItem> images = new ArrayList<>();
+    private Context context;
+    private ArrayList<ImageItem> images = new ArrayList<>();
 
-    public ImagesAdapter(GridLayoutManager gridLayoutManager) {
+    public ImagesAdapter(GridLayoutManager gridLayoutManager, Context context) {
         this.gridLayoutManager = gridLayoutManager;
+        this.context = context;
+    }
+
+    private View.OnClickListener getOnClickListener(final int position){
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(SwipeImagesActivity.newInstance(context, images, position));
+            }
+        };
     }
 
     @NonNull
@@ -58,6 +70,7 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         if(holder instanceof ImageViewHolder){
             ImageViewHolder imageViewHolder = (ImageViewHolder) holder;
             imageViewHolder.bind(images.get(position));
+            imageViewHolder.setOnClickListener(getOnClickListener(position));
         }
     }
 
