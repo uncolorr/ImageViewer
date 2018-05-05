@@ -7,16 +7,14 @@ import android.util.Log;
 
 import com.colorblind.uncolor.imageviewer.api.Api;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 /**
  * Created by uncolor on 01.05.2018.
  */
 
 public class App extends Application {
-
-
-    public static final String APP_PREFERENCES_USER = "user_pref";
-    public static final String APP_SETTINGS = "app_settings";
-    private static SharedPreferences settings;
 
     private static App instance;
 
@@ -24,8 +22,10 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Api.init();
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder().name("lastresponse.realm").build();
+        Realm.setDefaultConfiguration(config);
         instance = this;
-        settings = getSharedPreferences(APP_SETTINGS, Context.MODE_PRIVATE);
     }
 
     public static Context getContext(){
