@@ -6,35 +6,34 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by uncolor on 02.05.2018.
  */
 
-public class Error {
+public class Error extends RealmObject{
 
-    @Nullable
     @SerializedName("error_code")
-    public int errorCode;
+    private int errorCode;
 
     @Nullable
     @SerializedName("error_msg")
-    public String errorMessage;
+    private String errorMessage;
 
     @Nullable
     @SerializedName("request_params")
-    public List<RequestParameter> requestParams;
+    private RealmList<RequestParameter> requestParams;
 
-    @Nullable
     public int getErrorCode() {
         return errorCode;
     }
 
-    @Nullable
     public String getErrorMessage() {
         return errorMessage;
     }
 
-    @Nullable
     public List<RequestParameter> getRequestParams() {
         return requestParams;
     }

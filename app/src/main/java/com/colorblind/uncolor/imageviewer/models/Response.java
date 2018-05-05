@@ -4,25 +4,32 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by uncolor on 01.05.2018.
  */
 
-public class Response {
+public class Response extends RealmObject{
 
-    @Nullable
     @SerializedName("count")
     private long count;
 
     @Nullable
     @SerializedName("items")
-    private ImageItem[] imageItems;
+    private RealmList<ImageItem> imageItems;
+
+    public Response() {
+    }
 
     public long getCount() {
         return count;
     }
 
-    public ImageItem[] getImageItems() {
+    public List<ImageItem> getImageItems() {
         return imageItems;
     }
 }

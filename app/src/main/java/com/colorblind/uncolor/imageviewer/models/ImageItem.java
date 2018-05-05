@@ -6,21 +6,21 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmList;
+import io.realm.RealmObject;
+
 /**
  * Created by uncolor on 01.05.2018.
  */
 
-public class ImageItem implements Parcelable{
+public class ImageItem extends RealmObject implements Parcelable{
 
-    @Nullable
     @SerializedName("id")
     private long id;
 
-    @Nullable
     @SerializedName("album_id")
     private long albumId;
 
-    @Nullable
     @SerializedName("owner_id")
     private long ownerId;
 
@@ -36,11 +36,9 @@ public class ImageItem implements Parcelable{
     @SerializedName("photo_604")
     private String photo604;
 
-    @Nullable
     @SerializedName("width")
     private int width;
 
-    @Nullable
     @SerializedName("height")
     private int height;
 
@@ -48,9 +46,12 @@ public class ImageItem implements Parcelable{
     @SerializedName("text")
     private String text;
 
-    @Nullable
     @SerializedName("date")
     private long date;
+
+    public ImageItem(){
+
+    }
 
     protected ImageItem(Parcel in) {
         id = in.readLong();

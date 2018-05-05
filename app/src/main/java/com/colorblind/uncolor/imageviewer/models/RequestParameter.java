@@ -4,19 +4,21 @@ import android.support.annotation.Nullable;
 
 import com.google.gson.annotations.SerializedName;
 
+import io.realm.RealmObject;
+
 /**
  * Created by uncolor on 02.05.2018.
  */
 
-public class RequestParameter {
+public class RequestParameter extends RealmObject{
 
     @Nullable
     @SerializedName("key")
-    public String key;
+    private String key;
 
     @Nullable
     @SerializedName("value")
-    public String value;
+    private String value;
 
     @Nullable
     public String getKey() {
