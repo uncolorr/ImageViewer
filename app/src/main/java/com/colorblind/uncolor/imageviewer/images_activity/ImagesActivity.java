@@ -21,6 +21,10 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -87,7 +91,38 @@ public class ImagesActivity extends AppCompatActivity {
                 searchPhotosRequestData.getOffset(),
                 searchPhotosRequestData.getVersion())
                 .enqueue(getLoadImagesCallback(isRefreshing));
+    }
 
+    private void showLastSavedResponse(){
+        if(adapter.getImagesCount() == 0) {
+            Realm realm = Realm.getDefaultInstance();
+            RealmResults<ResponseModel> results = realm.where(ResponseModel.class).findAll();
+            if (results.size() != 0) {
+                ResponseModel responseModel = results.get(0);
+                updateAdapter(responseModel);
+            }
+        }
+    }
+
+    private void updateAdapter(ResponseModel responseModel){
+        List<ImageItem> items = responseModel.getResponse().getImageItems();
+        adapter.addListToEnd(items);
+        adapter.setLoaded();
+    }
+
+    private void saveResponse(ResponseModel responseModel){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        clearRealm(realm);
+        realm.copyToRealm(responseModel);
+        realm.commitTransaction();
+    }
+
+    private void clearRealm(Realm realm){
+        if(realm != null) {
+            RealmResults<ResponseModel> results = realm.where(ResponseModel.class).findAll();
+            results.deleteAllFromRealm();
+        }
     }
 
     private Callback<ResponseModel> getLoadImagesCallback(final boolean isRefreshing) {
@@ -104,15 +139,14 @@ public class ImagesActivity extends AppCompatActivity {
                             ImagesActivity.this.getString(R.string.msg_images_not_loaded),
                             Toast.LENGTH_LONG)
                             .show();
+                    showLastSavedResponse();
                 }
                 else {
                     if(isRefreshing){
                         adapter.clear();
                     }
-                    ImageItem[] items = response.body().getResponse().getImageItems();
-                    adapter.addListToEnd(items);
-                    adapter.setLoaded();
-                    searchPhotosRequestData.incOffset();
+                    updateAdapter(response.body());
+                    saveResponse(response.body());
 
                 }
             }
@@ -128,6 +162,7 @@ public class ImagesActivity extends AppCompatActivity {
                         ImagesActivity.this.getString(R.string.msg_unspecified_error),
                         Toast.LENGTH_LONG)
                         .show();
+                showLastSavedResponse();
             }
         };
     }
