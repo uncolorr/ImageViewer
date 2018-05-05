@@ -29,6 +29,8 @@ import retrofit2.Response;
 @EActivity(R.layout.activity_images)
 public class ImagesActivity extends AppCompatActivity {
 
+    private static final int FEED_COLUMN_COUNT = 2;
+
     @ViewById
     RecyclerView recyclerViewImages;
 
@@ -45,7 +47,7 @@ public class ImagesActivity extends AppCompatActivity {
     @AfterViews
     void init(){
         searchPhotosRequestData = new SearchPhotosRequestData();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, FEED_COLUMN_COUNT);
         recyclerViewImages.setLayoutManager(gridLayoutManager);
         adapter = new ImagesAdapter(gridLayoutManager, this);
         adapter.setOnLoadMoreListener(getOnLoadMoreListener());
@@ -75,6 +77,7 @@ public class ImagesActivity extends AppCompatActivity {
     }
 
     private void loadImages(boolean isRefreshing){
+        searchPhotosRequestData.setOffset(adapter.getImagesCount());
         if(isRefreshing){
             searchPhotosRequestData.resetOffset();
         }
