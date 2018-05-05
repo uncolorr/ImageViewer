@@ -112,6 +112,16 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         notifyDataSetChanged();
     }
 
+    public int getImagesCount(){
+        int counter = 0;
+        for (int i = 0; i < images.size(); i++) {
+            if(images.get(i) != null){
+                counter++;
+            }
+        }
+        return counter;
+    }
+
     public void setLoaded() {
         loading = false;
     }
