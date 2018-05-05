@@ -16,6 +16,7 @@ import com.colorblind.uncolor.imageviewer.models.ImageItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by uncolor on 01.05.2018.
@@ -92,10 +93,10 @@ public class ImagesAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         }
     }
 
-    public void addListToEnd(ImageItem[] images){
+    public void addListToEnd(List<ImageItem> images){
         removeLoadingItem();
-        this.images.addAll(Arrays.asList(images));
-        addLoadingItem(images.length);
+        this.images.addAll(images);
+        addLoadingItem(images.size());
         notifyDataSetChanged();
     }
 
