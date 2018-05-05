@@ -109,9 +109,9 @@ public class TouchImageView extends ImageView {
         });
     }
 
-    public void setMaxZoom(float x) {
+  /*  public void setMaxZoom(float x) {
         maxScale = x;
-    }
+    }*/
 
     private class ScaleListener extends
             ScaleGestureDetector.SimpleOnScaleGestureListener {
